@@ -1,0 +1,168 @@
+/******************************************************************************
+questoes para organizar o programa
+
+A) Na estrutura CLIENTES
+i. clientes.codigo = é formado pelos 6 primeiros dígitos do CPF do cliente.
+ii. clientes.tel = é uma estrutura TELEFONES que possui fixo e celular como campos.
+
+
+
+B) Na estrutura TELEFONES
+i. Os campos fixo e móvel são strings a fim de guardar, além do número, a máscara do telefone
+como no exemplo: (11) 3210-1000int codigo int codigo clientes cliente
+
+
+
+C) Na estrutura PRODUTOS
+i. produtos.codigo = é formado pelo valor inteiro dos 2 primeiros caracteres da marca do produto
+e 2 caracteres do modelo do produto (tabela ASCII). Após isso aplicar a fórmula
+hash=C1×313+C2×312+C3×311+C4×310 onde C1, C2, C3 e C4 são os valores numéricos
+inteiros dos caracteres. Por exemplo: Marca: DELL Modelo: PRECISION iremos usar “DEPR”.
+Sabendo que os valores inteiros das letras são: D → 68; E → 69; P → 80; R → 82 aplicamos
+na formula hash= 68×313+69×312+80×311+82×310 que resulta hash= 2093659. O código será
+então 2093659.
+ii. produtos.modelo = é uma estrutura MODELOS que possui marca e modelo como campos.
+
+
+
+D) Na estrutura CARRINHOS
+i. carrinhos.cliente = é uma estrutura CLIENTES que guarda os dados do cliente para quem a
+venda está sendo feita
+ii. carrinhos.produto[3] = é um VETOR de estruturas PRODUTOS que permite guardar ao menos
+3 dados de produtos que estão sendo vendidos.
+iii. carrinhos.quantidade[3] = é um VETOR de inteiros que irá guardar a quantidade de cada item
+adicionado ao carrinho. Há uma relação onde: carrinhos.quantidade[0] possui a quantidade de
+produtos referente ao carrinhos.produto[0], carrinhos.quantidade[1] possui a quantidade de
+produtos referente ao carrinhos.produto[1] e assim por diante.
+iv. carrinhos.subtotal = guarda a soma de todos os valores da venda. Lembrando que é a soma de
+qnt *valor produto.
+v. carrinhos.desconto = guarda o valor do desconto (exemplo 10 para 10%). Também pode ser
+modificado para validar um cupom de desconto caso a equipe queira fazer algo diferenciado.
+vi. carrinhos.total = guarda o valor total da compra subtraído o valor do campo desconto. Por
+exemplo, se R$ 1.000,00 é o subtotal da compra e o desconto é de 10%, o valor deste campo
+total é de R$ 900,00
+
+
+
+
+
+o programa ira rodar em um laço de repetiçao que se o usuario recebe um menu inicial onde ele podera escolher oque deseja operar
+e se ele selecionar 0 o programa fecha 
+*******************************************************************************/
+
+
+
+
+#include <stdio.h>
+ typedef struct telefones{
+     char fixo[15];
+     char celular[16];
+ }telefones;
+ 
+ typedef struct clientes{
+     int codigo;
+     char nome[50];
+     double cpf;
+     struct telefones tel;
+ }clientes;
+
+  typedef struct modelos{
+     char marca[20];
+     char modelo [20];
+ }modelos;
+ 
+ typedef struct produtos{
+     int codigo;
+     char nome [20];
+     double valor;
+     struct modelos modelo; 
+ }produtos;
+
+ typedef struct carrinhos{
+     struct clientes cliente;
+     struct produtos produto[3];
+     int quantidade[3];
+     double subtotal;
+     double desconto;
+     double total;
+ }carrinhos;
+ 
+ int opcoes;
+ 
+int main()
+{
+do{
+    printf("Qual dessas opções voce deseja realizar ? ");
+    printf("\n 1 - Cadastrar clientes \n 2 - Cadastrar produtos  \n 3 - Listar clientes cadastrados \n 4 - Listar produtos cadastrados \n 5 - Efetuar uma venda simples \n 0 - Sair do programa \n");
+    scanf(" %d",&opcoes);
+    
+    if(opcoes>5){
+        printf("digite uma opção valida\n");
+    }else{
+        switch (opcoes){
+            case 1:
+            /*cadastrar clientes*/
+            printf("\n\tCadastrar clientes\n");
+            
+            
+            
+            
+            
+            
+            
+            
+            break;
+            case 2:
+            /*Cadastrar produtos*/
+            printf("\n\tCadastrar produtos\n");
+            
+            
+            
+            
+            
+            
+            
+            
+            break;
+            case 3:
+            /*Listar clientes cadastrados*/
+            printf("\n\tListar clientes cadastrados\n");
+            
+            
+            
+            
+            
+            
+            
+            
+            break;
+            case 4:
+            /*Listar produtos cadastrados*/
+            printf("\n\tListar produtos cadastrados\n");
+            
+            
+            
+            
+            
+            
+            
+            
+            break;
+            case 5:
+            /*Efetuar uma venda simples*/
+            printf("\n\tEfetuar uma venda simples\n");
+            
+            
+            
+            
+            
+            
+            
+            
+            break;
+        }
+    }
+}while( opcoes != 0 );
+printf("Obrigado até mais !!!");
+    return 0;
+}
