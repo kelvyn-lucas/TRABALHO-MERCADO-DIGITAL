@@ -49,17 +49,26 @@ total é de R$ 900,00
 o programa ira rodar em um laço de repetiçao que se o usuario recebe um menu inicial onde ele podera escolher oque deseja operar
 e se ele selecionar 0 o programa fecha 
 *******************************************************************************/
-
-
-
-
 #include <stdio.h>
+
+
+/*structs do codigo*/
+
+
+//Nota: a questão C fala como deve ser formado a função dos Produtos e como ela deve se comportar
+
+//Nota: a questão D fala como deve ser formado a função dos Carrinhos e como ela deve se comportar 
+
+//Nota: alternativa 3 ja foi resolvida
+
+//
+
  typedef struct telefones{
      char fixo[15];
      char celular[16];
  }telefones;
  
- typedef struct clientes{
+ typedef struct clientes[3]{
      int codigo;
      char nome[50];
      double cpf;
@@ -71,7 +80,7 @@ e se ele selecionar 0 o programa fecha
      char modelo [20];
  }modelos;
  
- typedef struct produtos{
+ typedef struct produtos[10]{
      int codigo;
      char nome [20];
      double valor;
@@ -86,31 +95,80 @@ e se ele selecionar 0 o programa fecha
      double desconto;
      double total;
  }carrinhos;
+ //Nota: cont[0]e referente a quantas vezes foi rodado o processo de cadastro de clientes
+ //Nota: cont[1]e referente a quantas vezes foi rodado o processo de cadastro de produtos
+ //Nota: cont[2]e referente a quantas vezes foi rodado o processo de listagem de clientes
+ //Nota: cont[3]e referente a quantas vezes foi rodado o processo de listagem de produtos
+ //Nota: cont[4]e referente a quantas vezes foi rodado o processo de efetuação de venda simples
+ int opcoes,cont[5];
+
+
+
+ /*funçoes do codigo*/
  
- int opcoes;
+ 
+ 
+ 
+  void ola(void)
+ {
+     printf("ola \n Seja Bem vindo");
+ }
+ void mostraMenuInicial(){
+      printf("\nQual dessas opções voce deseja realizar ? ");
+    printf("\n 1 - Cadastrar clientes \n 2 - Cadastrar produtos  \n 3 - Listar clientes cadastrados \n 4 - Listar produtos cadastrados \n 5 - Efetuar uma venda simples \n 0 - Sair do programa \n");
+
+ }
+ /*cadastrar clientes*/
+ 
+ 
+ 
+ /*Cadastrar produtos*/
+ 
+ 
+ /*Listar clientes cadastrados*/
+ 
+ 
+ 
+ /*Listar produtos cadastrados*/
+ 
+ 
+ /*Efetuar uma venda simples*/
  
 int main()
 {
+    telefones t1;
+    clientes c1;
+ola();
 do{
-    printf("Qual dessas opções voce deseja realizar ? ");
-    printf("\n 1 - Cadastrar clientes \n 2 - Cadastrar produtos  \n 3 - Listar clientes cadastrados \n 4 - Listar produtos cadastrados \n 5 - Efetuar uma venda simples \n 0 - Sair do programa \n");
-    scanf(" %d",&opcoes);
+    mostraMenuInicial();
+       scanf(" %d",&opcoes);
     
     if(opcoes>5){
         printf("digite uma opção valida\n");
     }else{
         switch (opcoes){
             case 1:
+            
+                
+            
             /*cadastrar clientes*/
-            printf("\n\tCadastrar clientes\n");
+            printf("\n--------------------Cadastrar clientes--------------------\n");
+            printf("Digite o nome do cliente: ");
+           scanf(" %50[^\n]", &c1.nome);
+            printf("Digite o CPF do cliente: ");
+            scanf("%lf", &c1.cpf);
+            //telefone
+            printf("Digite o telefone fixo do cliente: ");
+            scanf(" %15[^\n]",&t1.fixo);
+            printf("Digite o telefone movel do cliente: ");
+            scanf(" %16[^\n]",&t1.celular);
             
             
             
             
             
             
-            
-            
+            cont[0]++;
             break;
             case 2:
             /*Cadastrar produtos*/
@@ -122,7 +180,7 @@ do{
             
             
             
-            
+            cont[1]++;
             break;
             case 3:
             /*Listar clientes cadastrados*/
@@ -134,7 +192,7 @@ do{
             
             
             
-            
+            cont[2]++;
             break;
             case 4:
             /*Listar produtos cadastrados*/
@@ -146,7 +204,7 @@ do{
             
             
             
-            
+            cont[3]++;
             break;
             case 5:
             /*Efetuar uma venda simples*/
@@ -158,11 +216,12 @@ do{
             
             
             
-            
+            cont[4]++;
             break;
         }
     }
 }while( opcoes != 0 );
 printf("Obrigado até mais !!!");
+printf("%s\n%0.0f\n---------telefones--------\n%s\n%s",c1.nome,c1.cpf,t1.fixo,t1.celular);
     return 0;
 }
