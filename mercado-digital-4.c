@@ -231,10 +231,7 @@ cont1++;
             break;
             case 5:
             /*Efetuar uma venda simples*/
-            printf("\n\tEfetuar uma venda simples\n");
-            
-            
-            
+            printf("\n\t--------------------Efetuar uma venda simples--------------------\n");
             
             
             getchar();
