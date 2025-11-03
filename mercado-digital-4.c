@@ -156,12 +156,12 @@ do{
         switch (opcoes){
             case 1:
             
-                
+            system("clear");  
             
             /*cadastrar clientes*/
-            printf("\n\n\n\n\n\n--------------------Cadastrar clientes--------------------\n");
+             printf("\n\n\n\n\n\n--------------------Cadastrar clientes--------------------\n");
             printf("Digite o nome do cliente: ");
-           scanf(" %50[^\n]", &c1[cont].nome);
+            scanf(" %50[^\n]", &c1[cont].nome);
             printf("Digite o CPF do cliente: ");
             scanf("%lf", &c1[cont].cpf);
             //telefone
@@ -204,7 +204,7 @@ do{
         c1[cont].codigo=0;
         printf("\n---------clientes--------\n%s\nCPF:%0.0f\nCodigo:%d\n---------telefones--------\nFixo:%s\nMovel:%s",c1[cont].nome,c1[cont].cpf,c1[cont].codigo,t1[cont].fixo,t1[cont].celular);
         cont++;
-        }while(cont!=confirm[0]);
+        }while(cont<confirm[0]);
             
             
             
@@ -215,13 +215,14 @@ do{
             break;
             case 4:
             /*Listar produtos cadastrados*/
-            printf("\n\n\n\n\n\n--------------------Listar produtos cadastrados--------------------\n");
+            system("clear");
+            printf("--------------------Listar produtos cadastrados--------------------\n");
             confirm[1]=cont1;
             cont1=0;
             do{
 printf("\n----------produtos----------\nProduto:%s\nModelo:%s\nMarca:%s\nValor:%0.0lf",p1[cont1].nome,m1[cont1].modelo,m1[cont1].marca,p1[cont1].valor);
 cont1++;
-}while(cont1!=confirm[1]);
+}while(cont1>=confirm[1]);
             
             
             getchar();
@@ -230,8 +231,20 @@ cont1++;
             cont3++;
             break;
             case 5:
+            system("clear");
             /*Efetuar uma venda simples*/
-            printf("\n\t--------------------Efetuar uma venda simples--------------------\n");
+            printf("\n\tEfetuar uma venda simples\n");
+            printf("Selecione o Cliente:");
+             confirm[0]=cont;
+             cont=0;
+             do{
+                 //apagar codigo c1[cont].codigo=0; após criar a validação do codigo ultilizando os 6 primeiros digitos 
+         c1[cont].codigo=0;
+         printf("\n---------clientes--------\nNome:%s\nCodigo:%d",c1[cont].nome,c1[cont].codigo);
+         cont++;
+         }while(cont<confirm[0]);
+            
+            
             
             
             getchar();
