@@ -120,7 +120,23 @@ e se ele selecionar 0 o programa fecha
 
  }
  int geraCodigoCliente(double cpf){
-     
+    
+        
+        int codigo; 
+        int verif;
+
+        verif = cpf/10000000000;
+       
+       
+        if(verif<=0){
+        codigo = cpf/10000;
+        }
+        else{
+            codigo = cpf/100000;
+        }
+        
+        return codigo ;
+    
  }
  void listarClientes(clientes c1[], telefones t1[], int confirm){
    
@@ -132,10 +148,13 @@ e se ele selecionar 0 o programa fecha
 
     for( confirm = 0; confirm < cont; confirm++){
       
-        c1[confirm].codigo = 0;  
+          
         printf("\n---------Cliente %d---------\n", cont+1);
         printf("Nome: %s\n", c1[confirm].nome);
-        printf("CPF: %.0lf\n", c1[confirm].cpf);
+         printf("CPF: "); 
+        if(c1[confirm].cpf<10000000000){
+        printf("0");}
+        printf("%.0lf\n", c1[confirm].cpf);
         printf("Código: %d\n", c1[confirm].codigo);
         printf("Telefone fixo: %s\n", t1[confirm].fixo);
         printf("Telefone móvel: %s\n", t1[confirm].celular);
@@ -210,6 +229,7 @@ do{
             scanf(" %50[^\n]", &c1[cont].nome);
             printf("Digite o CPF do cliente: ");
             scanf("%lf", &c1[cont].cpf);
+            c1[cont].codigo = geraCodigoCliente(c1[cont].cpf);
             //telefone
             printf("Digite o telefone fixo do cliente: ");
             scanf(" %15[^\n]",&t1[cont].fixo);
