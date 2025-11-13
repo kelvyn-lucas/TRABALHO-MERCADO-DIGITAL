@@ -101,7 +101,9 @@ e se ele selecionar 0 o programa fecha
  //Nota: cont[2]e referente a quantas vezes foi rodado o processo de listagem de clientes
  //Nota: cont[3]e referente a quantas vezes foi rodado o processo de listagem de produtos
  //Nota: cont[4]e referente a quantas vezes foi rodado o processo de efetuação de venda simples
- int opcoes,cont=0,cont1=0,cont2=0,cont3=0,cont4=0, confirm1;
+ 
+ // retirar variaveis globais
+ int opcoes,cont=2,cont1=0,cont2=0,cont3=0,cont4=0, confirm1;
 
 
 
@@ -138,7 +140,7 @@ e se ele selecionar 0 o programa fecha
         return codigo ;
     
  }
- void listarClientes(clientes c1[], telefones t1[], int confirm){
+ void listarClientes(clientes c1[],, int confirm){
    
    
     if (cont == 0){
@@ -156,15 +158,12 @@ e se ele selecionar 0 o programa fecha
         printf("0");}
         printf("%.0lf\n", c1[confirm].cpf);
         printf("Código: %d\n", c1[confirm].codigo);
-        printf("Telefone fixo: %s\n", t1[confirm].fixo);
-        printf("Telefone móvel: %s\n", t1[confirm].celular);
+        printf("Telefone fixo: %s\n", c1[confirm].tel.fixo);
+        printf("Telefone móvel: %s\n", c1[confirm].tel.celular);
     }
     }
    
 
-    getchar();
-    getchar();
-    system("clear");
 }
  void ListarProdutos(produtos p1[],modelos m1[],int confirm){
  
@@ -209,7 +208,10 @@ printf("\n----------------------------");
 int main()
 {
     telefones t1[3];
-    clientes c1[3];
+    clientes c1[3] = {
+        153899, "João", 15389938992, "4399684710", "4399685949",
+        41105, "Kelvin", 411053782, "49856865", "43965656"
+    };
     modelos m1[10];
     produtos p1[10];
     carrinhos car1;
@@ -218,6 +220,7 @@ do{
     system("clear");
     mostraMenuInicial();
        scanf(" %d",&opcoes);
+       getchar();
     
     if(opcoes>5){
         printf("Digite uma opção valida\n");
@@ -238,9 +241,9 @@ do{
             c1[cont].codigo = geraCodigoCliente(c1[cont].cpf);
             //telefone
             printf("Digite o telefone fixo do cliente: ");
-            scanf(" %15[^\n]",&t1[cont].fixo);
+            scanf(" %15[^\n]",&c1[cont].tel.fixo);
             printf("Digite o telefone movel do cliente: ");
-            scanf(" %16[^\n]",&t1[cont].celular);
+            scanf(" %16[^\n]",&c1[cont].tel.celular);
             
             
             
@@ -278,6 +281,9 @@ do{
                 listarClientes(c1, t1, cont);
              
                 cont2++;
+                printf("Pressione qualquer tecla para continuar");
+                getchar();
+                
             break;
              
             case 4:
