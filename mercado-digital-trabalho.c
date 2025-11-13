@@ -112,7 +112,7 @@ e se ele selecionar 0 o programa fecha
  
   void ola(void)
  {
-     printf("ola \n Seja Bem vindo");
+     printf("Seja Bem vindo");
  }
  void mostraMenuInicial(){
       printf("\nQual dessas opções voce deseja realizar ? ");
@@ -149,7 +149,7 @@ e se ele selecionar 0 o programa fecha
     for( confirm = 0; confirm < cont; confirm++){
       
           
-        printf("\n---------Cliente %d---------\n", cont+1);
+        printf("\n--------- Cliente %d ---------\n", confirm+1);
         printf("Nome: %s\n", c1[confirm].nome);
          printf("CPF: "); 
         if(c1[confirm].cpf<10000000000){
@@ -172,13 +172,14 @@ e se ele selecionar 0 o programa fecha
           printf("Nenhum produto cadastrado ainda!\n");
      }else{
     
-    
+    printf("\n---------- Produtos ----------");
     for( confirm = 0; confirm < cont1; confirm++){
-printf("\n----------produtos----------\nProduto:%s\n",p1[confirm].nome);
-printf("Modelo:%s\n",m1[confirm].modelo);
-printf("Marca:%s\n",m1[confirm].marca);
+printf("\nProduto: %s\n",p1[confirm].nome);
+printf("Modelo: %s\n",m1[confirm].modelo);
+printf("Marca: %s\n",m1[confirm].marca);
 printf("Codigo: %d\n",p1[confirm].codigo);
-printf("Valor:%0.2lf",p1[confirm].valor);
+printf("Valor: %0.2lf",p1[confirm].valor);
+printf("\n----------------------------");
 }
 }
             
@@ -214,11 +215,14 @@ int main()
     carrinhos car1;
 ola();
 do{
+    system("clear");
     mostraMenuInicial();
        scanf(" %d",&opcoes);
     
     if(opcoes>5){
-        printf("digite uma opção valida\n");
+        printf("Digite uma opção valida\n");
+        getchar();
+        getchar();
     }else{
         switch (opcoes){
             case 1:
@@ -226,7 +230,7 @@ do{
             system("clear");  
             
             /*cadastrar clientes*/
-             printf("\n\n\n\n\n\n--------------------Cadastrar clientes--------------------\n");
+             printf("-------------------- Cadastrar clientes --------------------\n");
             printf("Digite o nome do cliente: ");
             scanf(" %50[^\n]", &c1[cont].nome);
             printf("Digite o CPF do cliente: ");
@@ -250,14 +254,14 @@ do{
             system("clear");
             
             /*Cadastrar produtos*/
-                printf("\n\n\n\n\n--------------------Cadastrar produtos--------------------\n");
+                printf("-------------------- Cadastrar produtos --------------------\n");
                 printf("\nDigite o nome do produto: ");
                 scanf(" %20[^\n]",&p1[cont1].nome);
                 printf("Digite a marca do produto: ");
                 scanf(" %20[^\n]",&m1[cont1].marca);
                 printf("Digite o modelo do produto: ");
                 scanf(" %20[^\n]",&m1[cont1].modelo);
-                printf("Digite o valor do produto: ");
+                printf("Digite o valor do produto: R$");
                 scanf("%lf",&p1[cont1].valor);
                 p1[cont1].codigo = GeraCodigoProduto(p1, m1, cont1);
              
@@ -269,7 +273,7 @@ do{
              
               system("clear");
               
-                printf("\n\n--------------------Listar clientes cadastrados--------------------\n");
+                printf("-------------------- Listar clientes cadastrados --------------------\n");
              
                 listarClientes(c1, t1, cont);
              
@@ -279,7 +283,7 @@ do{
             case 4:
             //Listar produtos cadastrados
             system("clear");
-            printf("--------------------Listar produtos cadastrados--------------------\n");
+            printf("-------------------- Listar produtos cadastrados --------------------\n");
                 ListarProdutos(p1, m1, cont1);
             cont3++;
             break; 
