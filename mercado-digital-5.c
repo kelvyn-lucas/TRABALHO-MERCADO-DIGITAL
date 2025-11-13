@@ -73,6 +73,7 @@ e se ele selecionar 0 o programa fecha
      int codigo;
      char nome[50];
      double cpf;
+     char sexo;
      struct telefones tel;
  }clientes;
 
@@ -96,14 +97,12 @@ e se ele selecionar 0 o programa fecha
      double desconto;
      double total;
  }carrinhos;
- //Nota: cont[0]e referente a quantas vezes foi rodado o processo de cadastro de clientes
- //Nota: cont[1]e referente a quantas vezes foi rodado o processo de cadastro de produtos
- //Nota: cont[2]e referente a quantas vezes foi rodado o processo de listagem de clientes
- //Nota: cont[3]e referente a quantas vezes foi rodado o processo de listagem de produtos
- //Nota: cont[4]e referente a quantas vezes foi rodado o processo de efetuação de venda simples
- int opcoes,cont=0,cont1=0,cont2=0,cont3=0,cont4=0, confirm1;
-
-
+ //Nota: cont 0 e referente a quantas vezes foi rodado o processo de cadastro de clientes
+ //Nota: cont 1 e referente a quantas vezes foi rodado o processo de cadastro de produtos
+ //Nota: cont 2 e referente a quantas vezes foi rodado o processo de listagem de clientes
+ //Nota: cont 3 e referente a quantas vezes foi rodado o processo de listagem de produtos
+ //Nota: cont 4 e referente a quantas vezes foi rodado o processo de efetuação de venda simples
+ 
 
  /*funçoes do codigo*/
  
@@ -138,26 +137,26 @@ e se ele selecionar 0 o programa fecha
         return codigo ;
     
  }
- void listarClientes(clientes c1[], telefones t1[], int confirm){
+ void listarClientes(clientes c1[], telefones t1[], int confirm ){
    
-   
-    if (cont == 0){
+   int cont; 
+    if (confirm == 0){
         printf("Nenhum cliente cadastrado ainda!\n");
         return;
     }else{
 
-    for( confirm = 0; confirm < cont; confirm++){
+    for( cont = 0; cont < confirm; cont++){
       
           
-        printf("\n---------Cliente %d---------\n", cont+1);
-        printf("Nome: %s\n", c1[confirm].nome);
+        printf("\n---------Cliente ---------\n");
+        printf("Nome: %s\n", c1[cont].nome);
          printf("CPF: "); 
-        if(c1[confirm].cpf<10000000000){
+        if(c1[cont].cpf<10000000000){
         printf("0");}
-        printf("%.0lf\n", c1[confirm].cpf);
-        printf("Código: %d\n", c1[confirm].codigo);
-        printf("Telefone fixo: %s\n", t1[confirm].fixo);
-        printf("Telefone móvel: %s\n", t1[confirm].celular);
+        printf("%.0lf\n", c1[cont].cpf);
+        printf("Código: %d\n", c1[cont].codigo);
+        printf("Telefone fixo: %s\n", t1[cont].fixo);
+        printf("Telefone móvel: %s\n", t1[cont].celular);
     }
     }
    
@@ -168,17 +167,18 @@ e se ele selecionar 0 o programa fecha
 }
  void ListarProdutos(produtos p1[],modelos m1[],int confirm){
  
-     if(cont1==0){
+ int cont;
+     if(confirm==0){
           printf("Nenhum produto cadastrado ainda!\n");
      }else{
     
     
-    for( confirm = 0; confirm < cont1; confirm++){
-        p1[confirm].codigo = 0;
-printf("\n----------produtos----------\nProduto:%s\n",p1[confirm].nome);
-printf("Modelo:%s\n",m1[confirm].modelo);
-printf("Marca:%s\n",m1[confirm].marca);
-printf("Valor:%0.2lf",p1[confirm].valor);
+    for( cont = 0; cont < confirm; cont++){
+printf("\n----------produtos----------\nProduto:%s\n",p1[cont].nome);
+printf("Modelo:%s\n",m1[cont].modelo);
+printf("Marca:%s\n",m1[cont].marca);
+printf("Codigo: %d\n",p1[cont].codigo);
+printf("Valor:%0.2lf",p1[cont].valor);
 }
 }
             
@@ -187,24 +187,33 @@ printf("Valor:%0.2lf",p1[confirm].valor);
             getchar();
             system("clear");
  }
- /*cadastrar clientes*/
  
  
  
- /*Cadastrar produtos*/
+ int GeraCodigoProduto(produtos p1[], modelos m1[], int cont1) {
+    int confirm=cont1;
+    int C1=m1[confirm].marca[0];
+    int C2=m1[confirm].marca[1];
+    int C3=m1[confirm].modelo[0];
+    int C4=m1[confirm].modelo[1];
+    int codigo;
+     
+    codigo = (C1*31*31*31)+(C2*31*31)+(C3*31)+(C4*1);
+    return codigo;
+} 
  
  
- /*Listar clientes cadastrados*/
- 
- 
- 
- /*Listar produtos cadastrados*/
- 
- 
- /*Efetuar uma venda simples*/
- 
+ ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     
 int main()
 {
+    int opcoes,cont=0,cont1=0,cont2=0,cont3=0,cont4=0,confirm1,codigosubs,contador_cliente,validador_CPF=0;
+ char substituir=0;
+
     telefones t1[3];
     clientes c1[3];
     modelos m1[10];
@@ -223,26 +232,90 @@ do{
             
             system("clear");  
             
+            if(cont==3){
+                printf("\nVocê quer substituir algum cliente Sim(s) ou Não(n)? :");
+                scanf(" %c",&substituir);
+                if(substituir=='s'){
+                  for(contador_cliente=0;contador_cliente<3;contador_cliente++){
+                     printf("%s\n%d",c1[contador_cliente].nome,c1[contador_cliente].codigo); 
+                  }
+                  
+                  
+                  do{
+                  printf("\ndigite o codigo do cliente que deseja substituir!!");
+                    printf("\ncaso não deseja substituir nenhum digite (0): ");
+                    scanf("%d",&codigosubs);
+                    if(codigosubs==c1[0].codigo){
+                        cont=0;
+                    }else{
+                        if(codigosubs==c1[1].codigo){
+                            cont=1;
+                        }else{
+                            if(codigosubs==c1[2].codigo){
+                                cont=2;
+                            }else{
+                                if(codigosubs==0){
+                                    cont=3;
+                                }
+                                printf("\nDigite um valor valido");
+                                }
+                            }
+                        }}while(codigosubs!=c1[0].codigo&&codigosubs!=c1[1].codigo&&codigosubs!=c1[2].codigo&&codigosubs!=0);
+                    }
+               }
+            
             /*cadastrar clientes*/
+            if(cont<=2){
              printf("\n\n\n\n\n\n--------------------Cadastrar clientes--------------------\n");
             printf("Digite o nome do cliente: ");
             scanf(" %50[^\n]", &c1[cont].nome);
+            do{
             printf("Digite o CPF do cliente: ");
             scanf("%lf", &c1[cont].cpf);
-            c1[cont].codigo = geraCodigoCliente(c1[cont].cpf);
+            switch (cont){
+                  case 0:
+                  if(c1[cont].cpf==c1[1].cpf||c1[2].cpf){
+                      printf("Esse CPF já existe \nDigite um CPF Diferente");
+                      validador_CPF=1;
+                  }
+                  break;
+                  case 1:
+                  if(c1[cont].cpf==c1[0].cpf||c1[2].cpf){
+                      printf("Esse CPF já existe \nDigite um CPF Diferente");
+                      validador_CPF=1;
+                  }
+                  break;
+                  case 2:
+                  if(c1[cont].cpf==c1[0].cpf||c1[1].cpf){
+                      printf("Esse CPF já existe \nDigite um CPF Diferente");
+                      validador_CPF=1;
+                  }
+                  break;
+            }}while(validador_CPF==1);
+            
+            printf("Qual e o sexo do cliente Feminino(f) ou Masculino(m):");
+            scanf("%c",&c1[cont].sexo);
             //telefone
             printf("Digite o telefone fixo do cliente: ");
             scanf(" %15[^\n]",&t1[cont].fixo);
             printf("Digite o telefone movel do cliente: ");
             scanf(" %16[^\n]",&t1[cont].celular);
-            
+            if(cont==2){
+                printf("\nVoce cadastrou 3 clientes esse e o limite!!!\n");
+            }
+                if(substituir=='s'){
+                    substituir='n';
+                    cont=2;
+                }
             
             
             
             
             system("clear");
+            
             cont++;
             break;
+            
             case 2:
             
             system("clear");
@@ -257,7 +330,7 @@ do{
                 scanf(" %20[^\n]",&m1[cont1].modelo);
                 printf("Digite o valor do produto: ");
                 scanf("%lf",&p1[cont1].valor);
-             
+                p1[cont1].codigo = GeraCodigoProduto(p1, m1, cont1);
              
                 system("clear");
              
@@ -307,7 +380,7 @@ do{
             break;
         }
     }
-}while( opcoes != 0 );
+}}while( opcoes != 0 );
 
 
 /*confirm=cont2;
