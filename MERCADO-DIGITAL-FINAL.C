@@ -434,37 +434,11 @@ int main()
              system("clear");  
              
              if(cont==3){
-                 printf("\nVocê quer substituir algum cliente Sim(s) ou Não(n)? :");
-                 scanf(" %c",&substituir);
-                 if(substituir=='s'){
-                   for(contador_cliente=0;contador_cliente<3;contador_cliente++){
-                       printf("%s\n%d",c1[contador_cliente].nome,c1[contador_cliente].codigo); 
-                   }
-                   
-                   
-                   
-                   do{
-                   printf("\ndigite o codigo do cliente que deseja substituir!!");
-                     printf("\ncaso não deseja substituir nenhum digite (0): ");
-                     scanf("%d",&codigosubs);
-                     if(codigosubs==c1[0].codigo){
-                         cont=0;
-                     }else{
-                         if(codigosubs==c1[1].codigo){
-                             cont=1;
-                         }else{
-                             if(codigosubs==c1[2].codigo){
-                                 cont=2;
-                             }else{
-                                 if(codigosubs==0){
-                                     cont=3;
-                                 }
-                                 printf("\nDigite um valor valido");
-                                 }
-                             }
-                         }
-                   }while(codigosubs!=c1[0].codigo&&codigosubs!=c1[1].codigo&&codigosubs!=c1[2].codigo&&codigosubs!=0);
-                   }
+                 printf("\nQuantidade de clientes excedido:");
+                 printf("\nPressione Enter para continuar...");
+                 getchar(); 
+                 getchar(); 
+                 system("clear");
               }
              
              /*cadastrar clientes*/
@@ -479,19 +453,19 @@ int main()
               switch (cont){
                       case 0:
                       if(c1[cont].cpf==c1[1].cpf||c1[cont].cpf==c1[2].cpf){
-                          printf("Esse CPF já existe \nDigite um CPF Diferente");
+                          printf("Esse CPF já existe \n");
                           validador_CPF=1;
                       }
                       break;
                       case 1:
                       if(c1[cont].cpf==c1[0].cpf||c1[cont].cpf==c1[2].cpf){
-                          printf("Esse CPF já existe \nDigite um CPF Diferente");
+                          printf("Esse CPF já existe \n");
                           validador_CPF=1;
                       }
                       break;
                       case 2:
                       if(c1[cont].cpf==c1[0].cpf||c1[cont].cpf==c1[1].cpf){
-                          printf("Esse CPF já existe \nDigite um CPF Diferente");
+                          printf("Esse CPF já existe \n");
                           validador_CPF=1;
                       }
                       break;
@@ -537,6 +511,10 @@ int main()
              
              if(cont1 >= 10) {
                  printf("Limite de produtos atingido (10).\n");
+                  printf("\nPressione Enter para continuar...");
+                 getchar(); 
+                 getchar(); 
+                 system("clear");
              } else {
                  /*Cadastrar produtos*/
                  printf("=================Cadastrar produtos=================");
