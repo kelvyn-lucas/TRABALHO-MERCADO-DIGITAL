@@ -74,7 +74,7 @@ e se ele selecionar 0 o programa fecha
      int codigo;
      char nome[50];
      double cpf;
-     char sexo[10];
+     char sexo;
      struct telefones tel;
  }clientes;
 
@@ -182,7 +182,12 @@ e se ele selecionar 0 o programa fecha
          if(c1[cont].cpf<10000000000){
          printf("0");}
          printf("%.0lf\n", c1[cont].cpf);
-         printf("Sexo: %s\n", c1[cont].sexo);
+         if(c1[cont].sexo == 'M'){
+             printf("Sexo: Masculino\n");
+         }
+         else{
+             printf("Sexo: Feminino\n");
+         }
          printf("Código: %d\n", c1[cont].codigo);
          printf("Telefone fixo: %s\n", c1[cont].tel.fixo);
          printf("Telefone móvel: %s\n", c1[cont].tel.celular);
@@ -493,41 +498,22 @@ int main()
               }}while(validador_CPF==1);
               c1[cont].codigo = geraCodigoCliente(c1[cont].cpf);
               
-              printf("Qual e o sexo do cliente Feminino(f) ou Masculino(m):");
-              char verif_sexo;
-              scanf(" %c",&verif_sexo);
-              while(verif_sexo!='m' && verif_sexo!='M' && verif_sexo!='f' && verif_sexo!='F'){
-                  printf("Sexo inválido, digite novamente o sexo do cliente: Feminino(f) ou Masculino(m)");
-                  scanf(" %c", &verif_sexo);
-              }
-              if(verif_sexo == 'm' || verif_sexo == 'M' ){
-                /*como não podemos usar bibliotecas, defini os caracteres do 
-                array sexo casa por casa manualmente, é meio gambiarra mas não encontrei outra forma de fazer*/
-      c1[cont].sexo[0] = 'M';
-      c1[cont].sexo[1] = 'a';
-      c1[cont].sexo[2] = 's';
-      c1[cont].sexo[3] = 'c';
-      c1[cont].sexo[4] = 'u';
-      c1[cont].sexo[5] = 'l';
-      c1[cont].sexo[6] = 'i';
-      c1[cont].sexo[7] = 'n';
-      c1[cont].sexo[8] = 'o';
-      c1[cont].sexo[9] = '\0';
-      
-              }
-              else{
-                  c1[cont].sexo[0] = 'F';
-                  c1[cont].sexo[1] = 'e';
-                  c1[cont].sexo[2] = 'm';
-                  c1[cont].sexo[3] = 'i';
-                  c1[cont].sexo[4] = 'n';
-                  c1[cont].sexo[5] = 'i';
-                  c1[cont].sexo[6] = 'n';
-                  c1[cont].sexo[7] = 'o';
-                  c1[cont].sexo[8] = '\0';
-                  c1[cont].sexo[9] = '\0';
- 
-              }
+              char verif_sexo[1];
+
+                    printf("Qual e o sexo do cliente Feminino(f) ou Masculino(m): ");
+                    scanf("%s", verif_sexo);
+                    
+                    while (verif_sexo[0] != 'm' && verif_sexo[0] != 'M' && verif_sexo[0] != 'f' && verif_sexo[0] != 'F') {
+                    
+                        printf("Sexo inválido, digite novamente: Feminino(f) ou Masculino(m): ");
+                        scanf("%s", verif_sexo);
+                    }
+                    
+                    if (verif_sexo[0] == 'm' || verif_sexo[0] == 'M')
+                        c1[cont].sexo = 'M';
+                    else
+                        c1[cont].sexo = 'F';
+
               
               //telefone
               printf("Digite o telefone fixo do cliente: ");
