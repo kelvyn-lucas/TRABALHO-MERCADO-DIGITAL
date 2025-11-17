@@ -278,7 +278,7 @@ e se ele selecionar 0 o programa fecha
              carrinhoVazio = 0; 
              printf("Item %d: %s (Cód: %d)\n", i + 1, (*carrinho).produto[i].nome, (*carrinho).produto[i].codigo);
              printf("  Marca: %s, Modelo: %s\n", (*carrinho).produto[i].modelo.marca, (*carrinho).produto[i].modelo.modelo);
-             printf("  Qtd: %d x R$ %.2f = R$ %.2f\n",
+             printf("  Qtd: %d x R$ %.2f = R$ %.2f\n\n",
                     (*carrinho).quantidade[i],
                     (*carrinho).produto[i].valor,
                     (*carrinho).produto[i].valor * (*carrinho).quantidade[i]);
